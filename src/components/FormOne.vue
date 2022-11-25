@@ -13,6 +13,12 @@
                     <label>Cat 3</label>
                     <input type="checkbox" value="cat 3" v-model="blog.cats">
                 </div>
+
+                <div>
+                    <select v-model="blog.author">
+                        <option v-for="author in authors">{{ author }}</option>
+                    </select>
+                </div>
             </div>
         </form-helper>
 
@@ -23,6 +29,11 @@
             <p>Cats:</p>
             <ul>
                 <li v-for="cat in blog.cats">{{ cat }}</li>
+            </ul>
+
+            <p>Authos:</p>
+            <ul>
+                <li>{{ blog.author }}</li>
             </ul>
         </div>
     </div>
@@ -40,8 +51,10 @@ export default {
             blog: {
                 title: '',
                 content: '',
-                cats: []
-            }
+                cats: [],
+                author: ''
+            },
+            authors: ['Rokon', 'Naeim', 'Reza']
         }
     }
 }
