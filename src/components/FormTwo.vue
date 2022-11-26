@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div v-for="post in posts">
-            <h3>{{ post.title }}</h3>
+        <div v-theme:column="'dark'" v-for="post in posts">
+            <h3 v-rainbow>{{ post.title }}</h3>
             <p>{{ post.body }}</p>
         </div>
     </div>
@@ -19,9 +19,7 @@ export default {
         }
     },
     created() {
-
         this.$http.get('https://jsonplaceholder.typicode.com/posts').then(res => this.posts = res.body.slice(0, 10));
-
     }
 }
 </script>

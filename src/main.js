@@ -8,6 +8,29 @@ import VueResource from 'vue-resource'
 Vue.component('channels', Channels);
 Vue.use(VueResource);
 
+Vue.directive('rainbow', {
+  bind(el, binding, vnode) {
+    el.style.color = "#" + Math.random().toString().slice(2, 8);
+  }
+});
+
+Vue.directive('theme', {
+  bind(el, binding, vnode) {
+    if (binding.value == 'light') {
+      el.style.backgroundColor = 'white';
+    }
+    else if (binding.value == 'dark') {
+      el.style.backgroundColor = 'gray';
+      el.style.color = 'white';
+    }
+
+    if (binding.arg == 'column') {
+      el.style.width = '50%';
+      el.style.margin = 'auto';
+    }
+  }
+})
+
 export const bus = new Vue();
 
 Vue.config.productionTip = false
