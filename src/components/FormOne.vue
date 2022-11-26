@@ -1,7 +1,7 @@
 <template>
     <div>
         <form-helper>
-            <div slot="form-fields">
+            <div v-if="!added" slot="form-fields">
                 <input type="text" v-model.lazy="blog.title">
                 <textarea name="" placeholder="Ented text" v-model.lazy="blog.content"></textarea>
 
@@ -22,6 +22,8 @@
             </div>
         </form-helper>
 
+        <button v-on:click="handleAddPost">Add Post</button>
+        <h4 v-if="added">Thanks for posting!</h4>
         <div id="preview">
             <h3>Title: {{ blog.title }}</h3>
             <p>Description:</p>
@@ -54,7 +56,25 @@ export default {
                 cats: [],
                 author: ''
             },
-            authors: ['Rokon', 'Naeim', 'Reza']
+            authors: ['Rokon', 'Naeim', 'Reza'],
+            added: false,
+            error: ''
+        }
+    },
+    methods: {
+        handleAddPost: function () {
+            this.$http.post('https://jsonplaceholder.typicode.com/posts', {
+                title: this.title,
+                body: this.content,
+                id: 1
+            }).then(res => {
+                if (res.status === 201) {
+                    this.added = true
+                } else {
+                    console.log(res);
+                    this.error = 'Something went wrong!'
+                }
+            })
         }
     }
 }
