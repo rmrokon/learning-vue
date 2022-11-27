@@ -1,8 +1,8 @@
 <template>
     <div>
         <div v-theme:column="'dark'" v-for="post in posts">
-            <h3 v-rainbow>{{ post.title }}</h3>
-            <p>{{ post.body }}</p>
+            <h3 v-rainbow>{{ post.title | to - uppercase }}</h3>
+            <p>{{ post.body | snippet }}</p>
         </div>
     </div>
 </template>

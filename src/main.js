@@ -5,8 +5,12 @@ import App from './App'
 import Channels from './components/Channels.vue'
 import VueResource from 'vue-resource'
 
+//Creating Vue Component
+
 Vue.component('channels', Channels);
 Vue.use(VueResource);
+
+//Creating Custom directive
 
 Vue.directive('rainbow', {
   bind(el, binding, vnode) {
@@ -21,21 +25,37 @@ Vue.directive('theme', {
     }
     else if (binding.value == 'dark') {
       el.style.backgroundColor = 'gray';
+      el.style.padding = '20px';
       el.style.color = 'white';
     }
 
     if (binding.arg == 'column') {
       el.style.width = '50%';
+      el.style.marginBottom = '10px';
       el.style.margin = 'auto';
     }
   }
 })
+
+
 
 export const bus = new Vue();
 
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
+
+// Filters
+
+Vue.filter('to - uppercase', function (value) {
+  return value.toUpperCase();
+})
+
+Vue.filter('snippet', function (value) {
+  return value.slice(0, 100) + '...';
+})
+
+
 new Vue({
   el: '#app',
   components: { App },
