@@ -4,11 +4,18 @@ import Vue from 'vue'
 import App from './App'
 import Channels from './components/Channels.vue'
 import VueResource from 'vue-resource'
+import VueRouter from 'vue-router'
+import Routes from './routes'
 
 //Creating Vue Component
 
 Vue.component('channels', Channels);
 Vue.use(VueResource);
+Vue.use(VueRouter);
+
+const router = new VueRouter({
+  routes: Routes
+});
 
 //Creating Custom directive- Globally registered
 
@@ -59,5 +66,6 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   components: { App },
-  template: '<App/>'
+  template: '<App/>',
+  router: router
 })

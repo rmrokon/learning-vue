@@ -1,10 +1,10 @@
 <template>
   <div>
     <KeepAlive>
-      <component v-bind:is="component"></component>
+      <RouterView></RouterView>
+      <!-- <component v-bind:is="component"></component> -->
     </KeepAlive>
-    <button v-on:click="component = 'form-one'">Show component 1</button>
-    <button v-on:click="component = 'form-two'">Show component 2</button>
+
     <!-- <form-helper>
       <h3 slot="form-header">This is form header!</h3>
 
@@ -21,13 +21,15 @@
 </template>
 
 <script>
+import { RouterView } from 'vue-router';
 import FormOne from './components/FormOne.vue'
 import FormTwo from './components/FormTwo.vue'
 
 export default {
   components: {
-    'form-one': FormOne,
-    'form-two': FormTwo
+    "form-one": FormOne,
+    "form-two": FormTwo,
+    RouterView
   },
   data() {
     return {
