@@ -1,6 +1,7 @@
 <template>
     <div>
-        <div v-theme:column="'dark'" v-for="post in posts">
+        <input type="text" v-model="search" placeholder="Search">
+        <div v-theme:column="'dark'" v-for="post in filteredPosts">
             <h3 v-rainbow>{{ post.title | to - uppercase }}</h3>
             <p>{{ post.body | snippet }}</p>
         </div>
@@ -16,6 +17,14 @@ export default {
     data() {
         return {
             posts: [],
+            search: ''
+        }
+    },
+    computed: {
+        filteredPosts: function () {
+            return this.posts.filter(post => {
+                return post.title.match(this.search)
+            })
         }
     },
     created() {
