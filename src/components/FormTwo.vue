@@ -2,7 +2,10 @@
     <div>
         <input type="text" v-model="search" placeholder="Search">
         <div v-theme:column="'light'" v-for="post in filteredPosts">
-            <h3 v-rainbow>{{ post.title | toUppercase }}</h3>
+            <router-link v-bind:to="`/show/${post.id}`">
+                <h3 v-rainbow>{{ post.title | toUppercase }}</h3>
+            </router-link>
+
             <p>{{ post.body | snippet }}</p>
         </div>
     </div>
